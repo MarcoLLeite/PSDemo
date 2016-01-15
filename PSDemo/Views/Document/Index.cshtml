@@ -1,0 +1,53 @@
+﻿@model PSDemo.Models.Document
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div id="document">
+    <h4>Document Example</h4>
+    <div>
+        <div class="row">
+            <div class="col-xs-2">
+                @Html.Label("Document ID:")
+            </div>
+            <div class ="col-xs-10">
+                @Html.DisplayFor(model => model.DocumentID)
+            </div>
+        </div>
+
+        
+        <table class="table">
+            <tr style="@(Model.TableHeader.RowFormat.IsBold ? "font-weight: bold;" : "") background-color:@Model.TableHeader.RowFormat.BackgroundColor">
+                <th style="text-align:@Model.TableHeader.RowFormat.DescriptionHorizontalAlignment">
+                    @Html.DisplayFor(model => model.TableHeader.DescriptionHeader)
+                </th>
+                <th style ="text-align:@Model.TableHeader.RowFormat.PreviousDateHorizontalAlignment">
+                    @Html.DisplayFor(model => model.TableHeader.PreviousDateHeader)
+                    </th>
+                <th style="text-align:@Model.TableHeader.RowFormat.CurrentDateHorizontalAlignment">
+                    @Html.DisplayFor(model => model.TableHeader.CurrentDateHeader)
+                </th>
+            </tr>
+
+            @foreach (var item in Model.LineItems)
+            {
+                <tr style="@(item.RowFormat.IsBold ? "font-weight: bold;" : "")">
+                    <td style="text-align:@item.RowFormat.DescriptionHorizontalAlignment">
+                        @Html.DisplayFor(modelItem => item.Text)
+                    </td>
+                    <td style="text-align:@item.RowFormat.PreviousDateHorizontalAlignment">
+                        @Html.DisplayFor(modelItem => item.PreviousValue)
+                    </td>
+                    <td style="text-align:@item.RowFormat.CurrentDateHorizontalAlignment">
+                        @Html.DisplayFor(modelItem => item.CurrentValue)
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+    </div>
+</div>
